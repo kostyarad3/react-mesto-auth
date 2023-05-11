@@ -196,7 +196,7 @@ function App() {
           />
 
           <Route
-            path="/"
+            path="/*"
             element={
               <ProtectedRoute loggedIn={loggedIn}>
                 <>
@@ -263,3 +263,4 @@ export default App;
 // TODO
 // validation
 // burger menu
+// write normal README
