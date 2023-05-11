@@ -175,9 +175,6 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Routes>
-
-          
-
           <Route
             path="/sign-in"
             element={
@@ -199,7 +196,7 @@ function App() {
           />
 
           <Route
-            path="/"
+            path="/*"
             element={
               <ProtectedRoute loggedIn={loggedIn}>
                 <>
