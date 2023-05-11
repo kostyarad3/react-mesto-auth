@@ -175,6 +175,9 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Routes>
+
+          
+
           <Route
             path="/sign-in"
             element={
@@ -263,3 +266,4 @@ export default App;
 // TODO
 // validation
 // burger menu
+// write normal README
