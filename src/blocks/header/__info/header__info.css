@@ -1,0 +1,10 @@
+/* .header__info {
+
+} */
+
+@media screen and (min-width: 630px ) {
+  .header__info {
+    display: flex;
+    gap: 24px;
+  }
+}
