@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import "../index.css";
 import Header from "./Header";
 import Main from "./Main";
@@ -196,7 +196,7 @@ function App() {
           />
 
           <Route
-            path="/*"
+            path="/"
             element={
               <ProtectedRoute loggedIn={loggedIn}>
                 <>
@@ -221,6 +221,9 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+        <Route path="*" element={<Navigate to={loggedIn ? "/" : "/sign-in"}/>} />
+
         </Routes>
         {/* popup edit profile */}
         <EditProfilePopup
