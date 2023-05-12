@@ -18,6 +18,7 @@ import Login from "./Login";
 import Register from "./Register";
 import InfoTooltipSuccess from "../images/infotooltip-success.svg";
 import InfoTooltipFailure from "../images/infotooltip-failure.svg";
+import ConfirmaionPopup from "./ConfirmationPopup";
 
 function App() {
   const navigate = useNavigate();
@@ -33,6 +34,9 @@ function App() {
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] =
     React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isConfirmationPopupOpen, setIsConfirmayionPopupOpen] =
+    React.useState(false);
+  const [deletedCard, setDeletedCard] = React.useState("");
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({
@@ -66,6 +70,10 @@ function App() {
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
   }
+  function handleTrashIconClick(card) {
+    setIsConfirmayionPopupOpen(true);
+    setDeletedCard(card);
+  }
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -94,6 +102,7 @@ function App() {
         setCards((state) =>
           state.filter((newCard) => newCard._id !== card._id)
         );
+        setIsConfirmayionPopupOpen(false);
       })
       .catch((err) => console.log(err));
   }
@@ -220,7 +229,7 @@ function App() {
                     onEditAvatar={handleEditAvatarClick}
                     onCardClick={handleCardClick}
                     onCardLike={handleCardLike}
-                    onCardDelete={handleCardDelete}
+                    onTrashClick={handleTrashIconClick}
                   />
                   <Footer />
                 </>
@@ -252,10 +261,10 @@ function App() {
           onUpdateAvatar={handleUpdateAvatar}
         />
         {/* confirmation popup */}
-        <PopupWithForm
-          name="confirmation"
-          title="Вы уверены"
-          buttonTitle="Да"
+        <ConfirmaionPopup
+          isConfirmationPopupOpen={isConfirmationPopupOpen}
+          handleCardDelete={handleCardDelete}
+          card={deletedCard}
         />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         <InfoTooltip
@@ -276,4 +285,3 @@ export default App;
 // validation
 // burger menu
 // write normal README
-// add confirmation popup

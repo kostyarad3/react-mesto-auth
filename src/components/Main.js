@@ -9,7 +9,7 @@ function Main({
   onEditAvatar,
   onCardClick,
   onCardLike,
-  onCardDelete,
+  onTrashClick,
 }) {
   const currentUser = React.useContext(CurrentUserContext);
   const cardsElements = cards.map((card) => (
@@ -18,7 +18,7 @@ function Main({
         card={card}
         onCardClick={onCardClick}
         onCardLike={onCardLike}
-        onCardDelete={onCardDelete}
+        onTrashClick={onTrashClick}
       />
     </li>
   ));
