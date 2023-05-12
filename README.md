@@ -2,7 +2,7 @@
 
 ---
 
-## [![SIGN-UP.png](https://i.postimg.cc/445M7LPn/SIGN-UP.png)](https://postimg.cc/BtjNRCdG)
+## [![SIGN-UP.png](https://i.postimg.cc/445M7LPn/SIGN-UP.png)](https://kostyarad3.github.io/mesto-react-auth/)
 
 # 1. Общие сведения
 
