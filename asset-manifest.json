@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/kostyarad3/react-mesto-auth/static/css/main.a1a3c747.css",
-    "main.js": "/kostyarad3/react-mesto-auth/static/js/main.9270cdc1.js",
+    "main.css": "/kostyarad3/react-mesto-auth/static/css/main.e2224d10.css",
+    "main.js": "/kostyarad3/react-mesto-auth/static/js/main.55d1b94b.js",
     "static/media/Inter-Medium.woff": "/kostyarad3/react-mesto-auth/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
     "static/media/Inter-Black.woff": "/kostyarad3/react-mesto-auth/static/media/Inter-Black.c6938660eec019fefd68.woff",
     "static/media/Inter-Regular.woff": "/kostyarad3/react-mesto-auth/static/media/Inter-Regular.8c206db99195777c6769.woff",
@@ -19,11 +19,11 @@
     "static/media/edit-avatar.svg": "/kostyarad3/react-mesto-auth/static/media/edit-avatar.a086f758840ae814ecde.svg",
     "static/media/add.svg": "/kostyarad3/react-mesto-auth/static/media/add.54b1426515811a15ebaf.svg",
     "static/media/close.svg": "/kostyarad3/react-mesto-auth/static/media/close.b793e07c3f4c19e26c11.svg",
-    "main.a1a3c747.css.map": "/kostyarad3/react-mesto-auth/static/css/main.a1a3c747.css.map",
-    "main.9270cdc1.js.map": "/kostyarad3/react-mesto-auth/static/js/main.9270cdc1.js.map"
+    "main.e2224d10.css.map": "/kostyarad3/react-mesto-auth/static/css/main.e2224d10.css.map",
+    "main.55d1b94b.js.map": "/kostyarad3/react-mesto-auth/static/js/main.55d1b94b.js.map"
   },
   "entrypoints": [
-    "static/css/main.a1a3c747.css",
-    "static/js/main.9270cdc1.js"
+    "static/css/main.e2224d10.css",
+    "static/js/main.55d1b94b.js"
   ]
 }
