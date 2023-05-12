@@ -2,7 +2,7 @@
 
 ---
 
-## [![SIGN-UP.png](https://i.postimg.cc/445M7LPn/SIGN-UP.png)](https://postimg.cc/BtjNRCdG)
+## [![SIGN-UP.png](https://i.postimg.cc/445M7LPn/SIGN-UP.png)](https://kostyarad3.github.io/react-mesto-auth/)
 
 # 1. Общие сведения
 
@@ -44,6 +44,6 @@
 
 ---
 
-## Проект данной работы выложен на [GitHub Pages](https://kostyarad3.github.io/mesto-react-auth/ "GitHub Pages")
+## Проект данной работы выложен на [GitHub Pages](https://kostyarad3.github.io/react-mesto-auth/ "GitHub Pages")
 
 По любым вопросам обращаться [kostya.rad3@yandex.ru]
