@@ -1,7 +1,7 @@
 import PopupWithForm from "./PopupWithForm";
-import React from "react";
+import React, { useEffect } from "react";
 
-function AddPlacePopup(props) {
+function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   // STATES
   const [cardName, setCardName] = React.useState("");
   const [cardLink, setCardLink] = React.useState("");
@@ -15,19 +15,26 @@ function AddPlacePopup(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.onAddPlace({
+    onAddPlace({
       name: cardName,
       link: cardLink,
     });
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      setCardName("");
+      setCardLink("");
+    }
+  }, [isOpen]);
 
   return (
     <PopupWithForm
       name="cards"
       title="Новое место"
       buttonTitle="Создать"
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
       onSubmit={handleSubmit}
     >
       <input

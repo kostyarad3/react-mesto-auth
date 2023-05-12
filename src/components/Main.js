@@ -1,10 +1,27 @@
 import React from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import api from "../utils/api";
 
-function Main(props) {
+function Main({
+  cards,
+  onEditProfile,
+  onAddPlace,
+  onEditAvatar,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+}) {
   const currentUser = React.useContext(CurrentUserContext);
+  const cardsElements = cards.map((card) => (
+    <li key={card._id} className="place">
+      <Card
+        card={card}
+        onCardClick={onCardClick}
+        onCardLike={onCardLike}
+        onCardDelete={onCardDelete}
+      />
+    </li>
+  ));
 
   return (
     <main className="container">
@@ -13,11 +30,10 @@ function Main(props) {
           <img
             src={currentUser.avatar}
             alt="Фотография пользователя"
-            style={{ backgroundImage: `url(${currentUser.avatar})` }}
             className="profile__avatar"
           />
           <button
-            onClick={props.onEditAvatar}
+            onClick={onEditAvatar}
             className="button profile__avatar-button"
           ></button>
         </div>
@@ -25,31 +41,21 @@ function Main(props) {
           <h1 className="profile__name">{currentUser.name}</h1>
           <p className="profile__info">{currentUser.about}</p>
           <button
-            onClick={props.onEditProfile}
+            onClick={onEditProfile}
             className="button button_type_edit"
             type="button"
             aria-label="Редактировать"
           ></button>
         </div>
         <button
-          onClick={props.onAddPlace}
+          onClick={onAddPlace}
           className="button button_type_add"
           type="button"
           aria-label="Добавить"
         ></button>
       </section>
       <section className="cards">
-        <ul className="places">
-          {props.cards.map((card) => (
-            <Card
-              key={card._id}
-              card={card}
-              onCardClick={props.onCardClick}
-              onCardLike={props.onCardLike}
-              onCardDelete={props.onCardDelete}
-            />
-          ))}
-        </ul>
+        <ul className="places">{cardsElements}</ul>
       </section>
     </main>
   );

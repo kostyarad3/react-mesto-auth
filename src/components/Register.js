@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Register(props) {
+function Register({ handleRegistration }) {
   const [formValue, setFormValue] = React.useState({
     email: "",
     password: "",
@@ -19,7 +19,7 @@ function Register(props) {
   function handleSubmit(evt) {
     evt.preventDefault();
     const { email, password } = formValue;
-    props.handleRegistration(email, password);
+    handleRegistration(email, password);
   }
 
   return (

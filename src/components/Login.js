@@ -1,6 +1,6 @@
 import React from "react";
 
-function Login(props) {
+function Login({ handleLogin }) {
   const [formValue, setFormValue] = React.useState({
     email: "",
     password: "",
@@ -18,7 +18,7 @@ function Login(props) {
   function handleSubmit(evt) {
     evt.preventDefault();
     const { email, password } = formValue;
-    props.handleLogin(email, password);
+    handleLogin(email, password);
   }
 
   return (

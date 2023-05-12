@@ -1,11 +1,13 @@
-const date = new Date().getFullYear()
+const date = new Date().getFullYear();
 
-function Footer () {
+function Footer() {
   return (
-  <footer className="footer">
-    <p lang="en" className="footer__content">&copy; {date} Mesto Russia</p>
-  </footer>
-  )
+    <footer className="footer">
+      <p lang="en" className="footer__content">
+        &copy; {date} Mesto Russia
+      </p>
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;

@@ -1,26 +1,15 @@
-import InfotoltipSuccess from "../images/infotooltip-success.svg";
-import InfotoltipFailure from "../images/infotooltip-failure.svg";
-
-function InfoTooltip(props) {
+function InfoTooltip({ name, text, image, isOpen, onClose }) {
   return (
-    <div
-      className={`popup popup_type_${props.name} ${
-        props.isOpen ? "popup_opened" : ""
-      }`}
-    >
+    <div className={`popup popup_type_${name} ${isOpen ? "popup_opened" : ""}`}>
       <div className="infotooltip">
         <img
           className="infotooltip__image"
-          src={props.isSuccess ? InfotoltipSuccess : InfotoltipFailure}
+          src={image}
           alt="Картинка регистрации"
         />
-        <p className="infotooltip__paragraph">
-          {props.isSuccess
-            ? "Вы успешно зарегистрировались!"
-            : "Что-то пошло не так! Попробуйте ещё раз."}
-        </p>
+        <p className="infotooltip__paragraph">{text}</p>
         <button
-          onClick={props.onClose}
+          onClick={onClose}
           className="button button_type_close"
           type="button"
           aria-label="Закрыть"

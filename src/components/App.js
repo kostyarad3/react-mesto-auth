@@ -16,6 +16,8 @@ import InfoTooltip from "./InfoTooltip";
 import ProtectedRoute from "./ProtectedRoute";
 import Login from "./Login";
 import Register from "./Register";
+import InfoTooltipSuccess from "../images/infotooltip-success.svg";
+import InfoTooltipFailure from "../images/infotooltip-failure.svg";
 
 function App() {
   const navigate = useNavigate();
@@ -23,9 +25,9 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [isSuccess, setIsSuccess] = React.useState(false);
   const [userEmail, setUserEmail] = React.useState("");
-
+  const [infoTooltipText, setInfoTooltipText] = React.useState("");
+  const [infoTooltipImage, setiIfoTooltipImage] = React.useState(null);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] =
@@ -39,24 +41,30 @@ function App() {
   });
   // EFFECTS
   React.useEffect(() => {
-    api
-      .getInitialData()
-      .then((data) => {
-        const [userData, initialCardsData] = data;
-        setCurrentUser(userData);
-        setCards(initialCardsData);
-      })
-      .catch((err) => console.log(err));
+    if (loggedIn) {
+      api
+        .getInitialData()
+        .then((data) => {
+          const [userData, initialCardsData] = data;
+          setCurrentUser(userData);
+          setCards(initialCardsData);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [loggedIn]);
+
+  React.useEffect(() => {
+    checkToken();
   }, []);
   // FUNCTIONS
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
   function handleEditProfileClick() {
-    setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
+    setIsEditProfilePopupOpen(true);
   }
   function handleAddPlaceClick() {
-    setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
+    setIsAddPlacePopupOpen(true);
   }
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
@@ -122,11 +130,14 @@ function App() {
     auth
       .register(email, password)
       .then((res) => {
-        setIsSuccess(true);
+        setInfoTooltipText("Вы успешно зарегистрировались!");
+        setiIfoTooltipImage(InfoTooltipSuccess);
         navigate("./sign-in", { replace: true });
       })
       .catch((err) => {
         console.log(err);
+        setInfoTooltipText("Что-то пошло не так! Попробуйте ещё раз.");
+        setiIfoTooltipImage(InfoTooltipFailure);
       })
       .finally(() => {
         setIsInfoTooltipPopupOpen(true);
@@ -139,19 +150,14 @@ function App() {
       .then((res) => {
         if (res) {
           setLoggedIn(true);
-          navigate("../", { replace: true });
+          setUserEmail(email);
+          navigate("/", { replace: true });
         }
       })
       .catch((err) => {
         console.log(err);
       });
   }
-
-  // добавил зависимость, чтобы email добавлялся сразу,
-  // после входа на основную страницу, а не после повторного входа
-  React.useEffect(() => {
-    checkToken();
-  }, [window.location.href]);
 
   function checkToken() {
     const jwt = localStorage.getItem("jwt");
@@ -221,9 +227,11 @@ function App() {
               </ProtectedRoute>
             }
           />
-
-        <Route path="*" element={<Navigate to={loggedIn ? "/" : "/sign-in"}/>} />
-
+          {/* can delete */}
+          <Route
+            path="*"
+            element={<Navigate to={loggedIn ? "/" : "/sign-in"} />}
+          />
         </Routes>
         {/* popup edit profile */}
         <EditProfilePopup
@@ -252,7 +260,8 @@ function App() {
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         <InfoTooltip
           name="infotooltip"
-          isSuccess={isSuccess}
+          text={infoTooltipText}
+          image={infoTooltipImage}
           isOpen={isInfoTooltipPopupOpen}
           onClose={closeAllPopups}
         />
@@ -267,3 +276,4 @@ export default App;
 // validation
 // burger menu
 // write normal README
+// add confirmation popup
