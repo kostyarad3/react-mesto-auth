@@ -1,24 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useFormWithValidation from "../hooks/useFormWithValidation";
 
 function Register({ handleRegistration }) {
-  const [formValue, setFormValue] = React.useState({
-    email: "",
-    password: "",
-  });
-
-  function handleChange(evt) {
-    const { name, value } = evt.target;
-
-    setFormValue({
-      ...formValue,
-      [name]: value,
-    });
-  }
+  const { values, errors, isValid, handleChange } = useFormWithValidation();
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    const { email, password } = formValue;
+    const { email, password } = values;
     handleRegistration(email, password);
   }
 
@@ -34,9 +23,12 @@ function Register({ handleRegistration }) {
         minLength="3"
         maxLength="40"
         placeholder="Email"
-        value={formValue.email}
+        value={values?.email || ""}
         onChange={handleChange}
       />
+      <span className="login-form__input-error">
+        {errors?.email && "Введите адрес электронной почти."}
+      </span>
       <input
         type="password"
         className="login-form__input"
@@ -46,10 +38,20 @@ function Register({ handleRegistration }) {
         minLength="6"
         maxLength="40"
         placeholder="Пароль"
-        value={formValue.password}
+        value={values?.password || ""}
         onChange={handleChange}
       />
-      <button className="button login-form__button">Зарегестрироваться</button>
+      <span className="login-form__input-error">
+        {errors?.password && "Пароль должен быть длиннее 6 символов."}
+      </span>
+      <button
+        disabled={!isValid}
+        className={`login-form__button ${
+          !isValid && "login-form__button_type_inactive"
+        }`}
+      >
+        Зарегестрироваться
+      </button>
       <p className="login-form__text">
         Уже зарегестрированы?&nbsp;
         <Link to="/sign-in" className="login-form__link">

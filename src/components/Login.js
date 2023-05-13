@@ -1,23 +1,12 @@
 import React from "react";
+import useFormWithValidation from "../hooks/useFormWithValidation";
 
 function Login({ handleLogin }) {
-  const [formValue, setFormValue] = React.useState({
-    email: "",
-    password: "",
-  });
-
-  function handleChange(evt) {
-    const { name, value } = evt.target;
-
-    setFormValue({
-      ...formValue,
-      [name]: value,
-    });
-  }
+  const { values, errors, isValid, handleChange } = useFormWithValidation();
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    const { email, password } = formValue;
+    const { email, password } = values;
     handleLogin(email, password);
   }
 
@@ -33,9 +22,12 @@ function Login({ handleLogin }) {
         minLength="3"
         maxLength="40"
         placeholder="Email"
-        value={formValue.email}
+        value={values?.email || ""}
         onChange={handleChange}
       />
+      <span className="login-form__input-error">
+        {errors?.email && "Введите адрес электронной почти."}
+      </span>
       <input
         type="password"
         className="login-form__input"
@@ -45,10 +37,18 @@ function Login({ handleLogin }) {
         minLength="6"
         maxLength="40"
         placeholder="Пароль"
-        value={formValue.password}
+        value={values?.password || ""}
         onChange={handleChange}
       />
-      <button className="login-form__button">Войти</button>
+      <span className="login-form__input-error">
+        {errors?.password && "Пароль должен быть длиннее 6 символов."}
+      </span>
+      <button 
+        disabled={!isValid} 
+        className={`login-form__button ${!isValid && 'login-form__button_type_inactive'}`}
+      >
+        Войти
+      </button>
     </form>
   );
 }

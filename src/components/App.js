@@ -4,7 +4,6 @@ import "../index.css";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 import * as auth from "../utils/auth";
@@ -60,6 +59,41 @@ function App() {
   React.useEffect(() => {
     checkToken();
   }, []);
+  // close popup by ESC press and overlay click
+  React.useEffect(() => {
+    if (
+      isEditAvatarPopupOpen ||
+      isEditProfilePopupOpen ||
+      isAddPlacePopupOpen ||
+      selectedCard ||
+      isInfoTooltipPopupOpen
+    ) {
+      function handleEsc(evt) {
+        if (evt.key === "Escape") {
+          closeAllPopups();
+        }
+      }
+      function handleOverlayClick(evt) {
+        if (evt.target.classList.contains("popup_opened")) {
+          closeAllPopups();
+        }
+      }
+
+      document.addEventListener("click", handleOverlayClick);
+      document.addEventListener("keydown", handleEsc);
+
+      return () => {
+        document.removeEventListener("keydown", handleEsc);
+        document.removeEventListener("click", handleOverlayClick);
+      };
+    }
+  }, [
+    isEditAvatarPopupOpen,
+    isEditProfilePopupOpen,
+    isAddPlacePopupOpen,
+    selectedCard,
+    isInfoTooltipPopupOpen,
+  ]);
   // FUNCTIONS
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -282,6 +316,4 @@ function App() {
 export default App;
 
 // TODO
-// validation
 // burger menu
-// write normal README
