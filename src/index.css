@@ -60,11 +60,13 @@
 @import url(./blocks/form/__submit/_type/form__submit_type_inactive.css);
 /* login-form */
 @import url(./blocks/login-form/login-form.css);
-@import url(./blocks/login-form/login-form__title.css);
-@import url(./blocks/login-form/login-form__input.css);
-@import url(./blocks/login-form/login-form__button.css);
-@import url(./blocks/login-form/login-form__text.css);
-@import url(./blocks/login-form/login-form__link.css);
+@import url(./blocks/login-form/__title/login-form__title.css);
+@import url(./blocks/login-form/__input/login-form__input.css);
+@import url(./blocks/login-form/__button/login-form__button.css);
+@import url(./blocks/login-form/__button/_type/login-form__button_type_inactive.css);
+@import url(./blocks/login-form/__text/login-form__text.css);
+@import url(./blocks/login-form/__link/login-form__link.css);
+@import url(./blocks/login-form/__input-error/login-form__input-error.css);
 /* infotooltip */
 @import url(./blocks/infotooltip/infotooltip.css);
 @import url(./blocks/infotooltip/__paragraph/infotooltip__paragraph.css);

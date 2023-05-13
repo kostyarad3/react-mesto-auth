@@ -1,30 +1,35 @@
 import PopupWithForm from "./PopupWithForm";
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import useFormWithValidation from "../hooks/useFormWithValidation";
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
-  // STATES
   const currentUser = React.useContext(CurrentUserContext);
-  const [name, setName] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  // FUNCTIONS
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-  function handleDescriptionChange(e) {
-    setDescription(e.target.value);
-  }
+
+  const {
+    values,
+    errors,
+    isValid,
+    setValues,
+    handleChange,
+    setIsValid,
+    resetForm,
+  } = useFormWithValidation();
+
   function handleSubmit(e) {
     e.preventDefault();
     onUpdateUser({
-      name,
-      about: description,
+      name: values.name,
+      about: values.about,
     });
   }
-  // EFFECTS
+
   React.useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
+    if (isOpen) {
+      resetForm();
+      setValues({ name: currentUser.name, about: currentUser.about });
+      setIsValid(true);
+    }
   }, [currentUser, isOpen]);
 
   return (
@@ -35,31 +40,40 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isValid={isValid}
     >
       <input
+        name="name"
         type="text"
         className="form__input"
-        name="profile-name"
         id="profile-name"
-        value={name || ""}
-        onChange={handleNameChange}
+        value={values?.name || ""}
+        onChange={handleChange}
         required
         minLength="2"
         maxLength="40"
       />
-      <span className="form__input-error" id="profile-name-error"></span>
+      <span
+        className="form__input-error form__input-error_active"
+      >
+        {errors?.name && "Текст не должен быть короче 2 и длиннее 40 симв."}
+      </span>
       <input
         type="text"
+        name="about"
         className="form__input"
-        name="profile-job"
         id="profile-job"
-        value={description || ""}
-        onChange={handleDescriptionChange}
+        value={values?.about || ""}
+        onChange={handleChange}
         required
         minLength="2"
         maxLength="200"
       />
-      <span className="form__input-error" id="profile-job-error"></span>
+      <span
+        className="form__input-error form__input-error_active"
+      >
+        {errors?.about && "Текст не должен быть короче 2 и длиннее 40 симв."}
+      </span>
     </PopupWithForm>
   );
 }

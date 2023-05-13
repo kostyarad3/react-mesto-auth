@@ -1,13 +1,20 @@
 import PopupWithForm from "./PopupWithForm";
 import React from "react";
+import useFormWithValidation from "../hooks/useFormWithValidation";
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
-  const avatarRef = React.useRef();
+
+  const { values, errors, isValid, handleChange, resetForm } =
+    useFormWithValidation();
+
+  React.useEffect(() => {
+    if (isOpen) resetForm();
+  }, [isOpen, resetForm]);
 
   function handleSubmit(e) {
     e.preventDefault();
     onUpdateAvatar({
-      avatar: avatarRef.current.value,
+      avatar: values.avatarLink,
     });
   }
 
@@ -19,17 +26,21 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isValid={isValid}
     >
       <input
-        ref={avatarRef}
         type="url"
         className="form__input"
-        name="avatar-link"
+        name="avatarLink"
         id="avatar-link"
+        onChange={handleChange}
         placeholder="Ссылка на картинку"
         required
       />
-      <span className="form__input-error" id="avatar-link-error"></span>
+      <span className="form__input-error form__input-error_active">
+        {errors?.avatarLink &&
+          "Введите адрес сайта."}
+      </span>
     </PopupWithForm>
   );
 }
