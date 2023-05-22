@@ -71,3 +71,40 @@
 @import url(./blocks/infotooltip/infotooltip.css);
 @import url(./blocks/infotooltip/__paragraph/infotooltip__paragraph.css);
 @import url(./blocks/infotooltip/__image/infotooltip__image.css);
+
+
+.burger-menu {
+  width: 24px;
+  height: 23px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.burger-menu__item {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+}
+
+.header__images {
+  border-top: 1px solid rgba(84, 84, 84, .7);
+  width: 100%;
+  padding: 27px 30px 32px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__close-info {
+  width: 20px;
+  height: 20px;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.header__info_active {
+  display: flex;
+}
