@@ -12,6 +12,9 @@
 @import url(./blocks/header/__email/header__email.css);
 @import url(./blocks/header/__info/header__info.css);
 @import url(./blocks/header/__text/_type/header__text_type_logged.css);
+@import url(./blocks/header/__info/_active/header__info_active.css);
+@import url(./blocks/header/__images/header__images.css);
+@import url(./blocks/header/__close-info/header__close-info.css);
 /* profile */
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/profile/__avatar/profile__avatar.css);
@@ -71,40 +74,8 @@
 @import url(./blocks/infotooltip/infotooltip.css);
 @import url(./blocks/infotooltip/__paragraph/infotooltip__paragraph.css);
 @import url(./blocks/infotooltip/__image/infotooltip__image.css);
+/* burger-menu */
+@import url(./blocks/burger-menu/burger-menu.css);
+@import url(./blocks/burger-menu/__item/burger-menu__item.css);
 
 
-.burger-menu {
-  width: 24px;
-  height: 23px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-.burger-menu__item {
-  display: block;
-  width: 100%;
-  height: 3px;
-  background-color: #fff;
-}
-
-.header__images {
-  border-top: 1px solid rgba(84, 84, 84, .7);
-  width: 100%;
-  padding: 27px 30px 32px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-}
-
-.header__close-info {
-  width: 20px;
-  height: 20px;
-  align-self: flex-end;
-  cursor: pointer;
-}
-
-.header__info_active {
-  display: flex;
-}
