@@ -316,4 +316,4 @@ function App() {
 export default App;
 
 // TODO
-// burger menu
+// разобраться, почему при обновлении страницы все слетает на деплое
